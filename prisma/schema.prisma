@@ -16,7 +16,7 @@ datasource db {
 model Chat {
   id        String   @id @default(uuid()) @map("_id")
   userId    String
-  name      String
+  name      String?
   users     String[]
   messages  Message[]
   createdAt DateTime @default(now())

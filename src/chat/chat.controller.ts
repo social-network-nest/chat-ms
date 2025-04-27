@@ -17,7 +17,7 @@ export class ChatController {
   createChat(
     @Payload() payload: any
   ) {
-    return this.chatService.create(payload);
+    return this.chatService.createChat(payload);
   }
 
   @MessagePattern({ cmd: 'send_message' })

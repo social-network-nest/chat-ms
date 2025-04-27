@@ -11,8 +11,9 @@ export class ChatService extends PrismaClient implements OnModuleInit {
         return 'List of chats';
     }
 
-    create(payload: any) {
+    createChat(payload: any) {
         const {userId, name, users} = payload;
+        users.push(userId);
         return this.chat.create({
             data: {
                 userId: userId,
