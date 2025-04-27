@@ -26,4 +26,11 @@ export class ChatController {
   ) {
     return this.chatService.sendMessage(payload);
   }
+
+  @MessagePattern({ cmd: 'show_message_chat' })
+  showMessageChat(
+    @Payload() chatId: string
+  ) {
+    return this.chatService.showMessageChat(chatId);
+  }
 }

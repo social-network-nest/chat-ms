@@ -15,6 +15,7 @@ export class ChatService extends PrismaClient implements OnModuleInit {
                 }
             },
             select: {
+                id: true,
                 name: true,
                 users: true,
                 updatedAt: true,
@@ -53,4 +54,20 @@ export class ChatService extends PrismaClient implements OnModuleInit {
             message: 'Message sent successfully',
         }
     }
+
+    showMessageChat(chatId: string) {
+        return this.message.findMany({
+            where: {
+                chatId: chatId,
+            },
+            select: {
+                id: true,
+                userId: true,
+                message: true,
+                createdAt: true,
+            },
+        })
+    }
+
 }
+
