@@ -3,6 +3,10 @@ import { Injectable } from '@nestjs/common';
 @Injectable()
 export class ChatService {
     list() {
-        return 'Hello from Chat Service';
+        return 'List of chats';
+    }
+
+    create(payload: any) {
+        return 'Chat created';
     }
 }

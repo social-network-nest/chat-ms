@@ -9,9 +9,15 @@ export class ChatController {
   ) {}
 
   @MessagePattern({ cmd: 'list' })
-  list(
+  list() {
+    return this.chatService.list();
+  }
+
+  @MessagePattern({ cmd: 'create' })
+  create(
     @Payload() payload: any
   ) {
-    return this.chatService.list();
+    return payload;
+    return this.chatService.create(payload);
   }
 }
