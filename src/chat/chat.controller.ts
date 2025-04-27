@@ -13,11 +13,17 @@ export class ChatController {
     return this.chatService.list();
   }
 
-  @MessagePattern({ cmd: 'create' })
-  create(
+  @MessagePattern({ cmd: 'create_chat' })
+  createChat(
     @Payload() payload: any
   ) {
-    return payload;
     return this.chatService.create(payload);
+  }
+
+  @MessagePattern({ cmd: 'send_message' })
+  sendMessage(
+    @Payload() payload: any
+  ) {
+    return this.chatService.sendMessage(payload);
   }
 }
