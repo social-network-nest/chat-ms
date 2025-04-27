@@ -8,10 +8,10 @@ export class ChatController {
     private readonly chatService: ChatService,
   ) {}
 
-  @MessagePattern({ cmd: 'create' })
-  create(
+  @MessagePattern({ cmd: 'list' })
+  list(
     @Payload() payload: any
   ) {
-    return this.chatService.create();
+    return this.chatService.list();
   }
 }
