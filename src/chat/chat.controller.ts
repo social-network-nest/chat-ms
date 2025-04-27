@@ -8,9 +8,9 @@ export class ChatController {
     private readonly chatService: ChatService,
   ) {}
 
-  @MessagePattern({ cmd: 'list' })
-  list() {
-    return this.chatService.list();
+  @MessagePattern({ cmd: 'list_chat' })
+  listChat(userId: string) {
+    return this.chatService.listChat(userId);
   }
 
   @MessagePattern({ cmd: 'create_chat' })

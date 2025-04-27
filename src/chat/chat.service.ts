@@ -7,30 +7,50 @@ export class ChatService extends PrismaClient implements OnModuleInit {
         this.$connect();
     }
 
-    list() {
-        return 'List of chats';
+    listChat(userId: string) {
+        const chats = this.chat.findMany({
+            where: {
+                users: {
+                    has: userId,
+                }
+            },
+            select: {
+                name: true,
+                users: true,
+                updatedAt: true,
+            }
+        })
+        return chats;
     }
 
-    createChat(payload: any) {
+    async createChat(payload: any) {
         const {userId, name, users} = payload;
         users.push(userId);
-        return this.chat.create({
+        const chat = await this.chat.create({
             data: {
                 userId: userId,
                 name: name,
                 users: users,
             }
         });
+        return {
+            id: chat.id,
+            message: 'Chat created successfully',
+        }
     }
 
-    sendMessage(payload: any) {
+    async sendMessage(payload: any) {
         const {chatId, userId, message} = payload;
-        return this.message.create({
+        const text = await this.message.create({
             data: {
                 chatId: chatId,
                 userId: userId,
                 message: message,
             }
         });
+        return {
+            id: text.id,
+            message: 'Message sent successfully',
+        }
     }
 }
